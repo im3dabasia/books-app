@@ -11,6 +11,7 @@ const bookModel = new mongoose.Schema({
   },
   genre: String,
   publicationYear: Number,
+  filePath: String,
 });
 
 const Book = mongoose.model('Book', bookModel);
