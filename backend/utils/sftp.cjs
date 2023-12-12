@@ -20,8 +20,17 @@ class SFTPClient {
     console.log(`Uploading ${localFile} to ${remoteFile} ...`);
     try {
       await this.client.put(localFile, remoteFile);
+      return true;
     } catch (err) {
       console.error('Uploading failed:', err);
+    }
+  }
+  async downloadFile(remoteFile, localFile) {
+    console.log(`Downloading ${remoteFile} to ${localFile} ...`);
+    try {
+      await this.client.get(remoteFile, localFile);
+    } catch (err) {
+      console.error('Downloading failed:', err);
     }
   }
   
