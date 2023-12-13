@@ -7,6 +7,7 @@ const Home = () => {
 
   const deleteBook = async (id) => {
     await axios.delete(`/books/${id}`);
+    // alert(`Book deleted successfully!`);
     fetchBooks();
   };
 
@@ -38,7 +39,7 @@ const Home = () => {
             <BookCard
               key={book._id}
               book={book}
-              habdleDelete={(id) => deleteBook(id)}
+              handleDelete={(id) => deleteBook(id)}
               handleDownload={(id) => downloadBook(id)}
               handleDownloadFast={(id) => downloadBookFast(id)}
             />

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddBook = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState({
     title: "",
     author: "",
@@ -45,6 +47,7 @@ const AddBook = () => {
           publicationYear: "",
         });
         setFile(null);
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };

@@ -13,7 +13,7 @@ const Header = () => {
                   BOOK
                 </div>
                 <div className="w-min h-7 text-teal-500 text-opacity-80 text-4xl font-bold font-['Inter']">
-                  LOGO
+                  STORE
                 </div>
               </div>
             </Link>
