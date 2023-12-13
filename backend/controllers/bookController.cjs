@@ -166,7 +166,7 @@ async function noStreamBook(req, res) {
     if (!book) {
       return res.status(404).json({ error: 'Book not found' });
     }
-    const localPath = `${LOCAL_PATH}${bookid}.pdf`;
+    const localPath = `${LOCAL_PATH}${bookId}.pdf`;
     const downloadStatus = await downloadFileFromRemote(book.filePath, localPath);
     if (downloadStatus) {
       console.log("Downloaded on server");
