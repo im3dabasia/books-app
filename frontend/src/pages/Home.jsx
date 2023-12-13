@@ -11,12 +11,29 @@ const Home = () => {
     fetchBooks();
   };
 
+  const handleDownload = (response) => {
+    const blob = new Blob([response.data], { type: "application/pdf" });
+    const url = window.URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "book.pdf");
+
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  };
+
   const downloadBook = async (id) => {
-    await axios.post(`/books/no-stream/${id}`);
+    const res = await axios.post(`/books/no-stream/${id}`);
+    handleDownload(res);
   };
 
   const downloadBookFast = async (id) => {
-    await axios.post(`/books/stream/${id}`);
+    const res = await axios.post(`/books/stream/${id}`);
+    handleDownload(res);
   };
 
   const fetchBooks = async () => {
