@@ -11,7 +11,7 @@ const Home = () => {
     fetchBooks();
   };
 
-  const handleDownload = (response) => {
+  const handleDownload = (response, time) => {
     const blob = new Blob([response.data], { type: "application/pdf" });
     const url = window.URL.createObjectURL(blob);
 
@@ -24,16 +24,24 @@ const Home = () => {
 
     document.body.removeChild(link);
     window.URL.revokeObjectURL(url);
+
+    alert(`Total download time: ${time.toFixed(2)} milliseconds`);
   };
 
   const downloadBook = async (id) => {
+    const start = performance.now();
     const res = await axios.post(`/books/no-stream/${id}`);
-    handleDownload(res);
+    const end = performance.now();
+    const time = end - start;
+    handleDownload(res, time);
   };
 
   const downloadBookFast = async (id) => {
+    const start = performance.now();
     const res = await axios.post(`/books/stream/${id}`);
-    handleDownload(res);
+    const end = performance.now();
+    const time = end - start;
+    handleDownload(res, time);
   };
 
   const fetchBooks = async () => {
